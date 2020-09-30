@@ -1,7 +1,8 @@
 import React from 'react';
+import Header from './components/header';
 
 function App() {
-  return <h1>React Query App</h1>;
+  return <Header />;
 }
 
 export default App;
