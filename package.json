@@ -23,8 +23,11 @@
     "@material-ui/icons": "^4.9.1",
     "connect-history-api-fallback": "^1.6.0",
     "express": "^4.17.1",
+    "history": "^5.0.0",
     "react": "^0.0.0-experimental-94c0244ba",
-    "react-dom": "^0.0.0-experimental-94c0244ba"
+    "react-dom": "^0.0.0-experimental-94c0244ba",
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
