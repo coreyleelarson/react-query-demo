@@ -1,9 +1,17 @@
+import path from 'path';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
 import ServerPlugin from 'server-webpack-plugin';
 import webpack, { MultiCompiler } from 'webpack';
 /* eslint-disable-next-line import/order */
 import WebpackDevServer from 'webpack-dev-server';
 process.env.NODE_ENV = 'development';
+
+const watchOptions = {
+  ignored: [
+    path.resolve(__dirname, '../../node_modules'),
+    path.resolve(__dirname, '../../internals'),
+  ],
+};
 
 // Init client compiler.
 /* eslint-disable-next-line import/order */
@@ -16,6 +24,7 @@ const clientDevServer = new WebpackDevServer(clientCompiler, {
   overlay: true,
   port: 3001,
   stats: 'none',
+  watchOptions,
   writeToDisk: true,
 });
 
@@ -38,4 +47,4 @@ new FriendlyErrorsPlugin({
 
 // Start everything.
 clientDevServer.listen(3001);
-serverCompiler.watch({}, () => {});
+serverCompiler.watch(watchOptions, () => {});
