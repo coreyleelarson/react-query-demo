@@ -1,6 +1,12 @@
+import CssBaseline from '@material-ui/core/CssBaseline';
 import React from 'react';
 import { render } from 'react-dom';
 import App from 'client/app';
-import './styles.css';
 
-render(<App />, document.querySelector('#root'));
+render(
+  <>
+    <CssBaseline />
+    <App />
+  </>,
+  document.querySelector('#root')
+);

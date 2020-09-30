@@ -1,7 +1,12 @@
+import Button from '@material-ui/core/Button';
 import React from 'react';
 
 function App() {
-  return <h1>App</h1>;
+  return (
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+  );
 }
 
 export default App;
