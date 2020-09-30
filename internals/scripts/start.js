@@ -29,7 +29,12 @@ new ServerPlugin({
 
 // Init multi compiler.
 const multiCompiler = new MultiCompiler([clientCompiler, serverCompiler]);
-new FriendlyErrorsPlugin().apply(multiCompiler);
+new FriendlyErrorsPlugin({
+  compilationSuccessInfo: {
+    messages: ['Your application is running here http://localhost:3000'],
+    notes: ['Press CTRL-C to stop'],
+  },
+}).apply(multiCompiler);
 
 // Start everything.
 clientDevServer.listen(3001);
