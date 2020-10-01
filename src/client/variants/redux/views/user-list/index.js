@@ -1,23 +1,20 @@
+/* eslint-disable react/jsx-handler-names */
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import UserListView from 'client/views/user-list';
-import { addUser, deleteUser, fetchUsers } from '../../state/modules/user';
+import { useUsers, useUserActions } from '../../hooks/user';
 
 function ReduxUserListView() {
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.list);
-
-  const handleAddUser = (name) => dispatch(addUser(name));
-  const handleDeleteUser = (id) => dispatch(deleteUser(id));
+  const users = useUsers();
+  const userActions = useUserActions();
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    userActions.handleFetchUsers();
   }, []);
 
   return (
     <UserListView
-      handleAddUser={handleAddUser}
-      handleDeleteUser={handleDeleteUser}
+      handleAddUser={userActions.handleAddUser}
+      handleDeleteUser={userActions.handleDeleteUser}
       users={users}
     />
   );

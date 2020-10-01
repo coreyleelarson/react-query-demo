@@ -7,7 +7,13 @@ import DashboardView from './views/dashboard';
 import ProjectListView from './views/project-list';
 import UserListView from './views/user-list';
 
-const queryCache = new QueryCache();
+const queryCache = new QueryCache({
+  defaultConfig: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function ReactQueryView() {
   return (

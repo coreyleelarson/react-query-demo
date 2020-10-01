@@ -13,18 +13,19 @@ const projectSlice = createSlice({
 
 const { setProjectList } = projectSlice.actions;
 
-export const fetchProjects = () => async (dispatch) => {
-  dispatch(setProjectList(await ProjectService.getProjects()));
-};
-
-export const addProject = (values) => async (dispatch) => {
+const addProject = (values) => async (dispatch) => {
   await ProjectService.addProject(values);
   dispatch(fetchProjects());
 };
 
-export const deleteProject = (id) => async (dispatch) => {
+const fetchProjects = () => async (dispatch) => {
+  dispatch(setProjectList(await ProjectService.getProjects()));
+};
+
+const deleteProject = (id) => async (dispatch) => {
   await ProjectService.deleteProject(id);
   dispatch(fetchProjects());
 };
 
+export { addProject, deleteProject, fetchProjects };
 export default projectSlice.reducer;

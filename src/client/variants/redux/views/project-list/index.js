@@ -1,27 +1,20 @@
+/* eslint-disable react/jsx-handler-names */
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import ProjectListView from 'client/views/project-list';
-import {
-  addProject,
-  deleteProject,
-  fetchProjects,
-} from '../../state/modules/project';
+import { useProjects, useProjectActions } from '../../hooks/project';
 
 function ReduxProjectListView() {
-  const dispatch = useDispatch();
-  const projects = useSelector((state) => state.project.list);
-
-  const handleAddProject = (name) => dispatch(addProject(name));
-  const handleDeleteProject = (id) => dispatch(deleteProject(id));
+  const projects = useProjects();
+  const projectActions = useProjectActions();
 
   useEffect(() => {
-    dispatch(fetchProjects());
+    projectActions.handleFetchProjects();
   }, []);
 
   return (
     <ProjectListView
-      handleAddProject={handleAddProject}
-      handleDeleteProject={handleDeleteProject}
+      handleAddProject={projectActions.handleAddProject}
+      handleDeleteProject={projectActions.handleDeleteProject}
       projects={projects}
     />
   );
