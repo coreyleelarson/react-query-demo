@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import TodoService from 'client/services/todo';
+import * as TodoService from 'client/services/todo';
 
 const todoSlice = createSlice({
   name: 'todo',

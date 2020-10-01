@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryCache } from 'react-query';
-import TodoService from 'client/services/todo';
+import * as TodoService from 'client/services/todo';
 
 const useTodos = () => {
   return useQuery('todos', TodoService.getTodos);
