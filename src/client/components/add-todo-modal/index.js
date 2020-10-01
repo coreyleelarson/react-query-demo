@@ -17,10 +17,11 @@ function AddTodoModal({ isOpen, onClose, onSubmit }) {
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog fullWidth open={isOpen} onClose={onClose}>
       <DialogTitle id="form-dialog-title">Add Todo</DialogTitle>
       <DialogContent>
         <TextField
+          fullWidth
           label="Description"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
