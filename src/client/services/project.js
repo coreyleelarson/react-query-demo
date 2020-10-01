@@ -6,6 +6,11 @@ class ProjectService extends ApiService {
     return response.projects;
   };
 
+  static getProject = async (id) => {
+    const response = await this.getRequest(`/api/projects/${id}`);
+    return response.project;
+  };
+
   static addProject = async (values) => {
     const response = await this.postRequest('/api/projects', values);
     return response.project;

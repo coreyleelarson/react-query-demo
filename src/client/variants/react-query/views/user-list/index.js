@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-handler-names */
-import React from 'react';
+import React, { useState } from 'react';
 import UserListView from 'client/views/user-list';
-import { useUsers, useUserActions } from '../../hooks/user';
+import { useUser, useUsers, useUserActions } from '../../hooks/user';
 
 function ReactQueryUserListView() {
+  const [userId, setUserId] = useState();
+  const user = useUser(userId);
   const users = useUsers();
   const userActions = useUserActions();
 
@@ -11,6 +13,8 @@ function ReactQueryUserListView() {
     <UserListView
       handleAddUser={userActions.handleAddUser}
       handleDeleteUser={userActions.handleDeleteUser}
+      handleSelectUser={setUserId}
+      user={user}
       users={users}
     />
   );

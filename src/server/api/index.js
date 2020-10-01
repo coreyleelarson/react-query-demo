@@ -25,6 +25,12 @@ api.post('/users', (request, response) => {
   response.send({ user });
 });
 
+api.get('/users/:id', (request, response) => {
+  const { id } = request.params;
+  const user = users.find((user) => user.id === Number(id));
+  response.send({ user });
+});
+
 api.delete('/users/:id', (request, response) => {
   const { id } = request.params;
   users = users.filter((user) => user.id !== Number(id));
@@ -33,6 +39,12 @@ api.delete('/users/:id', (request, response) => {
 
 api.get('/projects', (request, response) => {
   response.send({ projects });
+});
+
+api.get('/projects/:id', (request, response) => {
+  const { id } = request.params;
+  const project = projects.find((project) => project.id === Number(id));
+  response.send({ project });
 });
 
 api.post('/projects', (request, response) => {

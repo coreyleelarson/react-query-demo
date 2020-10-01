@@ -2,13 +2,26 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import AddProjectModal from 'client/components/add-project-modal';
+import ProjectDetailModal from 'client/components/project-detail-modal';
 import ProjectListTable from 'client/components/project-list-table';
 import styles from './styles.module.css';
 
-function ProjectListView({ handleAddProject, handleDeleteProject, projects }) {
+function ProjectListView({
+  handleAddProject,
+  handleDeleteProject,
+  handleSelectProject,
+  project,
+  projects,
+}) {
   const [isAdding, setIsAdding] = useState(false);
+  const [isViewing, setIsViewing] = useState(false);
 
-  const handleSubmit = async (values) => {
+  const onSelect = (id) => {
+    setIsViewing(true);
+    handleSelectProject(id);
+  };
+
+  const onSubmit = async (values) => {
     await handleAddProject(values);
     setIsAdding(false);
   };
@@ -27,11 +40,20 @@ function ProjectListView({ handleAddProject, handleDeleteProject, projects }) {
           </Button>
         </div>
       </header>
-      <ProjectListTable onDelete={handleDeleteProject} projects={projects} />
+      <ProjectListTable
+        onDelete={handleDeleteProject}
+        onSelect={onSelect}
+        projects={projects}
+      />
       <AddProjectModal
         isOpen={isAdding}
         onClose={() => setIsAdding(false)}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      />
+      <ProjectDetailModal
+        isOpen={isViewing}
+        onClose={() => setIsViewing(false)}
+        project={project}
       />
     </main>
   );
@@ -39,6 +61,8 @@ function ProjectListView({ handleAddProject, handleDeleteProject, projects }) {
 ProjectListView.propTypes = {
   handleAddProject: PropTypes.func,
   handleDeleteProject: PropTypes.func,
+  handleSelectProject: PropTypes.func,
+  project: PropTypes.object,
   projects: PropTypes.array,
 };
 

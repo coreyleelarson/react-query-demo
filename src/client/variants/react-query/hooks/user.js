@@ -1,6 +1,11 @@
 import { useMutation, useQuery, useQueryCache } from 'react-query';
 import UserService from 'client/services/user';
 
+const useUser = (id) => {
+  const { data = {} } = useQuery(['users', id], () => UserService.getUser(id));
+  return data;
+};
+
 const useUsers = () => {
   const { data = [] } = useQuery('users', UserService.getUsers);
   return data;
@@ -21,4 +26,4 @@ const useUserActions = () => {
   return { handleAddUser, handleDeleteUser };
 };
 
-export { useUsers, useUserActions };
+export { useUser, useUsers, useUserActions };

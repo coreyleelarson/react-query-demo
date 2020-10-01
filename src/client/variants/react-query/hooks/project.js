@@ -1,6 +1,13 @@
 import { useMutation, useQuery, useQueryCache } from 'react-query';
 import ProjectService from 'client/services/project';
 
+const useProject = (id) => {
+  const { data = {} } = useQuery(['projects', id], () =>
+    ProjectService.getProject(id)
+  );
+  return data;
+};
+
 const useProjects = () => {
   const { data = [] } = useQuery('projects', ProjectService.getProjects);
   return data;
@@ -21,4 +28,4 @@ const useProjectActions = () => {
   return { handleAddProject, handleDeleteProject };
 };
 
-export { useProjects, useProjectActions };
+export { useProject, useProjects, useProjectActions };

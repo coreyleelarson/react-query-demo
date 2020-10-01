@@ -5,10 +5,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function UserListTable({ onDelete, users }) {
+function UserListTable({ onDelete, onSelect, users }) {
   return (
     <Table>
       <TableHead>
@@ -24,6 +25,9 @@ function UserListTable({ onDelete, users }) {
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.emailAddress}</TableCell>
             <TableCell align="right">
+              <IconButton onClick={() => onSelect(user.id)}>
+                <SearchIcon />
+              </IconButton>
               <IconButton onClick={() => onDelete(user.id)}>
                 <DeleteIcon />
               </IconButton>
@@ -36,6 +40,7 @@ function UserListTable({ onDelete, users }) {
 }
 UserListTable.propTypes = {
   onDelete: PropTypes.func,
+  onSelect: PropTypes.func,
   users: PropTypes.array,
 };
 

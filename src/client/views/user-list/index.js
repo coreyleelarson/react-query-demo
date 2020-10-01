@@ -2,13 +2,26 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import AddUserModal from 'client/components/add-user-modal';
+import UserDetailModal from 'client/components/user-detail-modal';
 import UserListTable from 'client/components/user-list-table';
 import styles from './styles.module.css';
 
-function UserListView({ handleAddUser, handleDeleteUser, users }) {
+function UserListView({
+  handleAddUser,
+  handleDeleteUser,
+  handleSelectUser,
+  user,
+  users,
+}) {
   const [isAdding, setIsAdding] = useState(false);
+  const [isViewing, setIsViewing] = useState(false);
 
-  const handleSubmit = async (values) => {
+  const onSelect = (id) => {
+    setIsViewing(true);
+    handleSelectUser(id);
+  };
+
+  const onSubmit = async (values) => {
     await handleAddUser(values);
     setIsAdding(false);
   };
@@ -27,11 +40,20 @@ function UserListView({ handleAddUser, handleDeleteUser, users }) {
           </Button>
         </div>
       </header>
-      <UserListTable onDelete={handleDeleteUser} users={users} />
+      <UserListTable
+        onDelete={handleDeleteUser}
+        onSelect={onSelect}
+        users={users}
+      />
       <AddUserModal
         isOpen={isAdding}
         onClose={() => setIsAdding(false)}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      />
+      <UserDetailModal
+        isOpen={isViewing}
+        onClose={() => setIsViewing(false)}
+        user={user}
       />
     </main>
   );
@@ -39,6 +61,8 @@ function UserListView({ handleAddUser, handleDeleteUser, users }) {
 UserListView.propTypes = {
   handleAddUser: PropTypes.func,
   handleDeleteUser: PropTypes.func,
+  handleSelectUser: PropTypes.func,
+  user: PropTypes.object,
   users: PropTypes.array,
 };
 

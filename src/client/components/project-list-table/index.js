@@ -5,10 +5,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function ProjectListTable({ onDelete, projects }) {
+function ProjectListTable({ onDelete, onSelect, projects }) {
   return (
     <Table>
       <TableHead>
@@ -22,6 +23,9 @@ function ProjectListTable({ onDelete, projects }) {
           <TableRow key={project.id}>
             <TableCell>{project.name}</TableCell>
             <TableCell align="right">
+              <IconButton onClick={() => onSelect(project.id)}>
+                <SearchIcon />
+              </IconButton>
               <IconButton onClick={() => onDelete(project.id)}>
                 <DeleteIcon />
               </IconButton>
@@ -34,6 +38,7 @@ function ProjectListTable({ onDelete, projects }) {
 }
 ProjectListTable.propTypes = {
   onDelete: PropTypes.func,
+  onSelect: PropTypes.func,
   projects: PropTypes.array,
 };
 
