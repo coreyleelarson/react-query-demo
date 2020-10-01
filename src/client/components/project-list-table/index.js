@@ -5,7 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -23,9 +22,6 @@ function ProjectListTable({ onDelete, projects }) {
           <TableRow key={project.id}>
             <TableCell>{project.name}</TableCell>
             <TableCell align="right">
-              <IconButton onClick={() => onDelete(project.id)}>
-                <EditIcon />
-              </IconButton>
               <IconButton onClick={() => onDelete(project.id)}>
                 <DeleteIcon />
               </IconButton>

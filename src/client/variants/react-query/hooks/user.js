@@ -8,14 +8,15 @@ const useUsers = () => {
 
 const useUserActions = () => {
   const queryCache = useQueryCache();
-  const onSuccessHandler = () => {
-    queryCache.invalidateQueries('users');
-  };
   const [handleAddUser] = useMutation(UserService.addUser, {
-    onSuccess: onSuccessHandler,
+    onSuccess: () => {
+      queryCache.invalidateQueries('users');
+    },
   });
   const [handleDeleteUser] = useMutation(UserService.deleteUser, {
-    onSuccess: onSuccessHandler,
+    onSuccess: () => {
+      queryCache.invalidateQueries('users');
+    },
   });
   return { handleAddUser, handleDeleteUser };
 };

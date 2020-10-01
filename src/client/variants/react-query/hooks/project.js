@@ -8,14 +8,15 @@ const useProjects = () => {
 
 const useProjectActions = () => {
   const queryCache = useQueryCache();
-  const onSuccessHandler = () => {
-    queryCache.invalidateQueries('projects');
-  };
   const [handleAddProject] = useMutation(ProjectService.addProject, {
-    onSuccess: onSuccessHandler,
+    onSuccess: () => {
+      queryCache.invalidateQueries('projects');
+    },
   });
   const [handleDeleteProject] = useMutation(ProjectService.deleteProject, {
-    onSuccess: onSuccessHandler,
+    onSuccess: () => {
+      queryCache.invalidateQueries('projects');
+    },
   });
   return { handleAddProject, handleDeleteProject };
 };

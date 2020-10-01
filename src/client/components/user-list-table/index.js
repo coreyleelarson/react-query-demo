@@ -5,7 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -25,9 +24,6 @@ function UserListTable({ onDelete, users }) {
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.emailAddress}</TableCell>
             <TableCell align="right">
-              <IconButton onClick={() => onDelete(user.id)}>
-                <EditIcon />
-              </IconButton>
               <IconButton onClick={() => onDelete(user.id)}>
                 <DeleteIcon />
               </IconButton>

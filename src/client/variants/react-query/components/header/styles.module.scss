@@ -1,3 +1,9 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .navigation {
   padding-block: 20px;
 
@@ -8,4 +14,9 @@
     margin: 0;
     padding: 0;
   }
+}
+
+.details {
+  display: flex;
+  grid-gap: 20px;
 }
