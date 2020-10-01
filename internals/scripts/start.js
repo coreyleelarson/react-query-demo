@@ -23,6 +23,7 @@ const clientDevServer = new WebpackDevServer(clientCompiler, {
   noInfo: true,
   overlay: true,
   port: 3001,
+  publicPath: '/',
   stats: 'none',
   watchOptions,
   writeToDisk: true,

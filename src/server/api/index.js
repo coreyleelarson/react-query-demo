@@ -6,7 +6,13 @@ let users = [
   { id: 1, emailAddress: 'admin@test.com', username: 'admin' },
   { id: 2, emailAddress: 'user@test.com', username: 'user' },
 ];
-let count = users.length;
+let userCount = users.length;
+
+let projects = [
+  { id: 1, name: 'Test Project' },
+  { id: 2, name: 'Another Project' },
+];
+let projectCount = projects.length;
 
 api.get('/users', (request, response) => {
   response.send({ users });
@@ -14,7 +20,7 @@ api.get('/users', (request, response) => {
 
 api.post('/users', (request, response) => {
   const { username, emailAddress } = request.body;
-  const user = { id: ++count, username, emailAddress };
+  const user = { id: ++userCount, username, emailAddress };
   users.push(user);
   response.send({ user });
 });
@@ -22,6 +28,23 @@ api.post('/users', (request, response) => {
 api.delete('/users/:id', (request, response) => {
   const { id } = request.params;
   users = users.filter((user) => user.id !== Number(id));
+  response.sendStatus(200);
+});
+
+api.get('/projects', (request, response) => {
+  response.send({ projects });
+});
+
+api.post('/projects', (request, response) => {
+  const { name } = request.body;
+  const project = { id: ++projectCount, name };
+  projects.push(project);
+  response.send({ project });
+});
+
+api.delete('/projects/:id', (request, response) => {
+  const { id } = request.params;
+  projects = projects.filter((project) => project.id !== Number(id));
   response.sendStatus(200);
 });
 

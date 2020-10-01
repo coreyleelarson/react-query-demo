@@ -45,6 +45,7 @@ export default merge(baseConfig, {
     hotUpdateMainFilename: 'scripts/hot/[hash].hot-update.json',
     filename: 'scripts/[name].[hash:8].js',
     path: path.resolve(__dirname, '../../build/client'),
+    publicPath: '/',
   },
   plugins: [
     new CleanPlugin(),
