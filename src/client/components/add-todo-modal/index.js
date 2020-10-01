@@ -7,44 +7,37 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function AddUserModal({ isOpen, onClose, onSubmit }) {
-  const [username, setUsername] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
+function AddTodoModal({ isOpen, onClose, onSubmit }) {
+  const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    await onSubmit({ username, emailAddress });
+    await onSubmit({ description });
     onClose();
-    setUsername();
-    setEmailAddress();
+    setDescription();
   };
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle id="form-dialog-title">Add User</DialogTitle>
+      <DialogTitle id="form-dialog-title">Add Todo</DialogTitle>
       <DialogContent>
         <TextField
-          label="Username"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
-        <TextField
-          label="Email Address"
-          onChange={(e) => setEmailAddress(e.target.value)}
-          value={emailAddress}
+          label="Description"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
         />
       </DialogContent>
       <DialogActions>
         <Button color="primary" variant="contained" onClick={handleSubmit}>
-          Add User
+          Add Todo
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
-AddUserModal.propTypes = {
+AddTodoModal.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
 };
 
-export default AddUserModal;
+export default AddTodoModal;

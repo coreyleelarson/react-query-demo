@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import Header from './components/header';
-import UserList from './components/user-list';
+import TodoList from './components/todo-list';
 
 const queryCache = new QueryCache({
   defaultConfig: {
@@ -15,7 +15,7 @@ function ReactQueryView() {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <Header />
-      <UserList />
+      <TodoList />
     </ReactQueryCacheProvider>
   );
 }

@@ -1,3 +1,3 @@
-import user from './modules/user';
+import todo from './modules/todo';
 
-export default { user };
+export default { todo };

@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
-import { useUsers, useUserActions } from '../../hooks/user';
+import React from 'react';
+import { useTodos } from '../../hooks/todo';
 import styles from './styles.module.scss';
 
 function Header() {
-  const users = useUsers();
-  const userActions = useUserActions();
-
-  useEffect(() => {
-    userActions.handleFetchUsers();
-  }, []);
+  const todos = useTodos();
 
   return (
     <header className={styles.header}>
-      <span># of Users: {users.length}</span>
+      <span># of Todos: {todos.length}</span>
     </header>
   );
 }

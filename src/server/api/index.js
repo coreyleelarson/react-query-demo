@@ -2,32 +2,34 @@ import express from 'express';
 
 const api = express.Router();
 
-let users = [
-  { id: 1, emailAddress: 'admin@test.com', username: 'admin' },
-  { id: 2, emailAddress: 'user@test.com', username: 'user' },
+let todos = [
+  { id: 1, description: 'Take out the trash', isCompleted: true },
+  { id: 2, description: 'Do the dishes', isCompleted: false },
 ];
-let userCount = users.length;
+let todoCount = todos.length;
 
-api.get('/users', (request, response) => {
-  response.send({ users });
+api.get('/todos', (request, response) => {
+  response.send({ todos });
 });
 
-api.post('/users', (request, response) => {
-  const { username, emailAddress } = request.body;
-  const user = { id: ++userCount, username, emailAddress };
-  users.push(user);
-  response.send({ user });
+api.post('/todos', (request, response) => {
+  const { description } = request.body;
+  const todo = { id: ++todoCount, description, isCompleted: false };
+  todos.push(todo);
+  response.send({ todo });
 });
 
-api.get('/users/:id', (request, response) => {
+api.post('/todos/:id', (request, response) => {
+  const { isCompleted } = request.body;
   const { id } = request.params;
-  const user = users.find((user) => user.id === Number(id));
-  response.send({ user });
+  const todo = todos.find((todo) => todo.id === Number(id));
+  todo.isCompleted = isCompleted;
+  response.send({ todo });
 });
 
-api.delete('/users/:id', (request, response) => {
+api.delete('/todos/:id', (request, response) => {
   const { id } = request.params;
-  users = users.filter((user) => user.id !== Number(id));
+  todos = todos.filter((todo) => todo.id !== Number(id));
   response.sendStatus(200);
 });
 
