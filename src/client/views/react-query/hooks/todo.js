@@ -2,8 +2,7 @@ import { useMutation, useQuery, useQueryCache } from 'react-query';
 import TodoService from 'client/services/todo';
 
 const useTodos = () => {
-  const { data = [] } = useQuery('todos', TodoService.getTodos);
-  return data;
+  return useQuery('todos', TodoService.getTodos);
 };
 
 const useTodoActions = () => {
