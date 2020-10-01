@@ -8,25 +8,16 @@ const useTodos = () => {
 
 const useTodoActions = () => {
   const queryCache = useQueryCache();
-  const [handleAddTodo] = useMutation(TodoService.addTodo, {
-    onSuccess: () => {
-      queryCache.invalidateQueries('todos');
-    },
-  });
-  const [handleUpdateTodo] = useMutation(
+  const mutateOptions = {
+    onSuccess: () => queryCache.invalidateQueries('todos'),
+  };
+  const [addTodo] = useMutation(TodoService.addTodo, mutateOptions);
+  const [updateTodo] = useMutation(
     ({ id, ...values }) => TodoService.updateTodo(id, values),
-    {
-      onSuccess: () => {
-        queryCache.invalidateQueries('todos');
-      },
-    }
+    mutateOptions
   );
-  const [handleDeleteTodo] = useMutation(TodoService.deleteTodo, {
-    onSuccess: () => {
-      queryCache.invalidateQueries('todos');
-    },
-  });
-  return { handleAddTodo, handleDeleteTodo, handleUpdateTodo };
+  const [deleteTodo] = useMutation(TodoService.deleteTodo, mutateOptions);
+  return { addTodo, updateTodo, deleteTodo };
 };
 
 export { useTodos, useTodoActions };

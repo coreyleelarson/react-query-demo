@@ -32,5 +32,5 @@ const updateTodo = (id, values) => async (dispatch) => {
   dispatch(fetchTodos());
 };
 
-export { addTodo, deleteTodo, fetchTodos, updateTodo };
+export const actions = { addTodo, deleteTodo, fetchTodos, updateTodo };
 export default todoSlice.reducer;

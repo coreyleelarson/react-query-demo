@@ -2,6 +2,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Spinner from './components/spinner';
 import TopHeader from './components/top-header';
 
 const ReduxView = lazy(() =>
@@ -17,7 +18,7 @@ function App() {
       <CssBaseline />
       <TopHeader />
       <Container>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Spinner />}>
           <Switch>
             <Route path="/redux" component={ReduxView} />
             <Route path="/react-query" component={ReactQueryView} />

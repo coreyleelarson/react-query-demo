@@ -6,7 +6,10 @@ import TodoList from './components/todo-list';
 const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
-      refetchOnWindowFocus: false,
+      // refetchInterval: 1000,
+      // refetchOnWindowFocus: false,
+      staleTime: 10000,
+      // suspense: true,
     },
   },
 });

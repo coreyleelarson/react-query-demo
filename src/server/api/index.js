@@ -5,10 +5,12 @@ const api = express.Router();
 let todos = [
   { id: 1, description: 'Take out the trash', isCompleted: true },
   { id: 2, description: 'Do the dishes', isCompleted: false },
+  { id: 3, description: 'Do the dishes again', isCompleted: false },
 ];
 let todoCount = todos.length;
 
-api.get('/todos', (request, response) => {
+api.get('/todos', async (request, response) => {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   response.send({ todos });
 });
 

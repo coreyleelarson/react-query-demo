@@ -8,14 +8,14 @@ function ReduxTodoListView() {
   const todoActions = useTodoActions();
 
   useEffect(() => {
-    todoActions.handleFetchTodos();
+    todoActions.fetchTodos();
   }, []);
 
   return (
     <TodoListView
-      handleAddTodo={todoActions.handleAddTodo}
-      handleDeleteTodo={todoActions.handleDeleteTodo}
-      handleUpdateTodo={todoActions.handleUpdateTodo}
+      handleAddTodo={todoActions.addTodo}
+      handleDeleteTodo={todoActions.deleteTodo}
+      handleUpdateTodo={todoActions.updateTodo}
       todos={todos}
     />
   );

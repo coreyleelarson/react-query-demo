@@ -9,9 +9,9 @@ function ReactQueryTodoList() {
 
   return (
     <TodoList
-      handleAddTodo={todoActions.handleAddTodo}
-      handleDeleteTodo={todoActions.handleDeleteTodo}
-      handleUpdateTodo={todoActions.handleUpdateTodo}
+      handleAddTodo={todoActions.addTodo}
+      handleDeleteTodo={todoActions.deleteTodo}
+      handleUpdateTodo={todoActions.updateTodo}
       todos={todos}
     />
   );
